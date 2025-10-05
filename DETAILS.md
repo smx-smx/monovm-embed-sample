@@ -2,7 +2,7 @@
 
 At a high level, the sample does 3 things:
 
-1. Compiles and publishes a managed C# library [src/CsharpSample/](src/CsharpSample/).
+1. Compiles and publishes a managed C# library [src/CSharpSample/](src/CSharpSample/).
 2. Compiles and publishes a stub C# project that uses a custom target to write the location of the Mono runtime pack to a file. [src/GetRuntimePack/](src/GetRuntimePack/).
 3. Compiles a native application that links with the Mono runtime from the runtime pack and that loads and runs some code from the sample C# library. [src/native/](src/native/).
 
@@ -30,7 +30,7 @@ For various reasons, the Mono library in the runtime pack is named `libcoreclr`,
 
 It's a fairly typical use of the Mono embedding API.  The one new thing in .NET 5 and .NET 6 embedding compared to Mono 6.x is that you have to call `monovm_initialize` with a key-value list of runtime configuration properties.  The most important one is the `TRUSTED_PLATFORM_ASSEMBLIES` property which is a path-separated list of the full paths of all the managed libraries that the application may want to load.
 
-After initializing the runtime, the sample loads the `CsharpSample` assembly, finds a class in it, and calls a couple of methods.  See the Mono embedding API documentation for details on how this is supposed to work. It's the same as in previous Mono releases.
+After initializing the runtime, the sample loads the `CSharpSample` assembly, finds a class in it, and calls a couple of methods.  See the Mono embedding API documentation for details on how this is supposed to work. It's the same as in previous Mono releases.
 
 ## Questions
 

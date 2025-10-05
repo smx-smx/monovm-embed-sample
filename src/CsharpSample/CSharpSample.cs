@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CsharpSample
+namespace CSharpSample
 {
     public class SampleClass
     {

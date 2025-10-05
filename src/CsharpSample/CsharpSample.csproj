@@ -15,9 +15,16 @@
       <TrimmerRootDescriptor Include="MyRoots.xml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="obj\**" />
+  </ItemGroup>
+
   <Target Name="_FixRootAssembly" AfterTargets="PrepareForILLink">
     <ItemGroup>
-      <TrimmerRootAssembly Update="@(TrimmerRootAssembly)" Condition=" '%(RootMode)' == 'EntryPoint' " RootMode="Library" />
+      <TrimmerRootAssembly
+        Update="@(TrimmerRootAssembly)"
+        Condition=" '%(RootMode)' == 'EntryPoint' "
+        RootMode="Library" />
     </ItemGroup>
   </Target>
 

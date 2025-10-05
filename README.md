@@ -63,7 +63,7 @@ other RID and configuration) exists.  It should contain a
 
 ### Local build limitations ###
 
-1. The `CsharpSample` is compiled using a normal (installed) `dotnet` SDK, so
+1. The `CSharpSample` is compiled using a normal (installed) `dotnet` SDK, so
 it won't be able to directly use any new managed APIs from the dotnet/runtime
 checkout.  If the new API is in `System.Private.CoreLib.dll`, you may be able
 to call it using reflection.

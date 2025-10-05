@@ -18,7 +18,7 @@ static const char* trusted_assemblies[] = {
 static int num_trusted_assemblies = sizeof (trusted_assemblies) / sizeof (trusted_assemblies[0]);
 
 
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define PATH_SEP_CHAR ';'
 #else
 #define PATH_SEP_CHAR ':'
@@ -55,7 +55,7 @@ run_something (void *ptr);
 /* This is a magic number that must be passed to mono_jit_init_version */
 #define FRAMEWORK_VERSION "v4.0.30319"
 
-static const char *sample_assm = "CsharpSample, Version=1.0.0.1"; /* can also specify Culture and PublicKeyToken */
+static const char *sample_assm = "CSharpSample, Version=1.0.0.1"; /* can also specify Culture and PublicKeyToken */
 
 static pthread_t main_thread;
 
@@ -66,6 +66,7 @@ main (void)
 	const char *prop_keys[] = {"TRUSTED_PLATFORM_ASSEMBLIES"};
 	char *prop_values[] = {tpa_list};
 	int nprops = sizeof(prop_keys)/sizeof(prop_keys[0]);
+
 	monovm_initialize (nprops, (const char**) &prop_keys, (const char**) &prop_values);
 	free (tpa_list);
 	MonoDomain *root_domain = mono_jit_init_version ("embedder_sample", FRAMEWORK_VERSION);
@@ -139,15 +140,15 @@ run_something (void * start_data)
  		printf ("%% attached foreign thread\n");
 	}
 
-	MonoClass *kls = mono_class_from_name (img, "CsharpSample", "SampleClass");
+	MonoClass *kls = mono_class_from_name (img, "CSharpSample", "SampleClass");
 	if (!kls) {
-		printf ("Coudln't find CsharpSample.SampleClass in \"%s\"\n", sample_assm);
+		printf ("Coudln't find CSharpSample.SampleClass in \"%s\"\n", sample_assm);
 		return (void*)(intptr_t)1;
 	}
 
 	MonoMethod *create = mono_class_get_method_from_name (kls, "Create", 0);
 	if (!create) {
-		printf ("No Create method in CsharpSample.SampleClass\n");
+		printf ("No Create method in CSharpSample.SampleClass\n");
 		return (void*)(intptr_t)1;
 	}
 
@@ -159,7 +160,7 @@ run_something (void * start_data)
 	MonoMethod *hello = mono_class_get_method_from_name (kls, "Hello", 0);
 
 	if (!hello) {
-		printf ("No Hello method in CsharpSample.SampleClass\n");
+		printf ("No Hello method in CSharpSample.SampleClass\n");
 		return (void*)(intptr_t)1;
 	}
 

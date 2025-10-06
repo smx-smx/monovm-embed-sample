@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(monovm-embed-sample LANGUAGES C CXX)
 
+set(CMAKE_CXX_STANDARD 20)
+
 option(OPT_DOTNET_RID "Runtime Identifier")
 if(NOT OPT_DOTNET_RID)
 	message(FATAL_ERROR "OPT_DOTNET_RID required")
